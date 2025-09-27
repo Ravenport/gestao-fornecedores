@@ -1,13 +1,15 @@
 package com.projeto.bloco.gestao_fornecedores.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "fornecedores")
+@Data
 public class Fornecedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(nullable = false)
     private String nome;
@@ -26,5 +28,5 @@ public class Fornecedor {
     private Endereco endereco;
 
     @Column(nullable = false)
-    private boolean status;
+    private boolean active;
 }

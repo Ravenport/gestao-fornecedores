@@ -4,19 +4,22 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "endereco_fornecedor")
+@Table(name = "documentos_fornecedores")
 @Data
-public class Endereco {
+public class Documentos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
-    private String cep;
+    @Column(unique = true, nullable = false)
+    private String nome;
 
     @Column(nullable = false)
-    private String numero;
+    private String descricao;
 
     @Column(nullable = false)
-    private String complemento;
+    private String mimeType;
+
+    @Column(nullable = false)
+    private String caminho;
 }
