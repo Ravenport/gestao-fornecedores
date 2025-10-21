@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/fornecedores")
+@RequestMapping("/fornecedor")
 public class FornecedorController {
     private final FornecedorService fornecedorService;
 
@@ -41,7 +41,7 @@ public class FornecedorController {
 
     @DeleteMapping("/{fornecedorId}")
     public ResponseEntity<String> deleteFornecedor(@PathVariable long fornecedorId) {
-        fornecedorService.delete(fornecedorId);
-        return ResponseEntity.ok("Fornecedor deletado com sucesso!");
+        fornecedorService.alterarStatus(fornecedorId, "DESATIVADO");
+        return ResponseEntity.ok("Fornecedor desativado com sucesso!");
     }
 }

@@ -3,6 +3,9 @@ package com.projeto.bloco.gestao_fornecedores.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Table(name = "fornecedores")
 @Data
@@ -18,15 +21,20 @@ public class Fornecedor {
     private String produtoFornecido;
 
     @Column(nullable = false)
-    private String Telefone;
+    private String telefone;
 
     @Column(nullable = false)
-    private String Email;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="endereco_id", nullable = false)
-    private Endereco endereco;
+    private String email;
 
     @Column(nullable = false)
-    private boolean active;
+    private LocalDateTime dataCadastro;
+
+    @Column(nullable = false)
+    private LocalDateTime dataFinalContrato;
+
+    @Column(nullable = false)
+    private String status;
+
+    @OneToMany(mappedBy = "fornecedorAuditado")
+    private List<AuditFornecedor> auditorias;
 }
