@@ -34,7 +34,4 @@ public class Fornecedor {
 
     @Column(nullable = false)
     private String status;
-
-    @OneToMany(mappedBy = "fornecedorAuditado")
-    private List<AuditFornecedor> auditorias;
 }
