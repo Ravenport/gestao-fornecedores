@@ -1,10 +1,14 @@
 package com.projeto.bloco.gestao_fornecedores.controllers;
 
+import com.projeto.bloco.gestao_fornecedores.dtos.DadosMinimosFornecedor;
+import com.projeto.bloco.gestao_fornecedores.exceptions.FornecedorNotFoundException;
 import com.projeto.bloco.gestao_fornecedores.models.Fornecedor;
+import com.projeto.bloco.gestao_fornecedores.models.enums.FornecedorStatus;
 import com.projeto.bloco.gestao_fornecedores.services.FornecedorService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/fornecedor")
@@ -22,15 +26,20 @@ public class FornecedorController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Fornecedor>> readFornecedores() {
-        List<Fornecedor> fornecedores = fornecedorService.getAll();
+    public ResponseEntity<List<DadosMinimosFornecedor>> readFornecedores() {
+        List<DadosMinimosFornecedor> fornecedores = fornecedorService.getAll();
         return ResponseEntity.ok(fornecedores);
     }
 
     @GetMapping("/{fornecedorId}")
     public ResponseEntity<Fornecedor> readFornecedor(@PathVariable long fornecedorId) {
-        Fornecedor fornecedor = fornecedorService.get(fornecedorId);
-        return ResponseEntity.ok(fornecedor);
+        try {
+            Fornecedor fornecedor = fornecedorService.get(fornecedorId);
+            return ResponseEntity.ok(fornecedor);
+        } catch (Exception e) {
+            System.out.println("Default Locale: " + Locale.getDefault());
+            throw new FornecedorNotFoundException("Fornecedor nao encontrado!", e);
+        }
     }
 
     @PutMapping
@@ -41,7 +50,7 @@ public class FornecedorController {
 
     @DeleteMapping("/{fornecedorId}")
     public ResponseEntity<String> deleteFornecedor(@PathVariable long fornecedorId) {
-        fornecedorService.alterarStatus(fornecedorId, "DESATIVADO");
+        fornecedorService.alterarStatus(fornecedorId, FornecedorStatus.DESATIVADO);
         return ResponseEntity.ok("Fornecedor desativado com sucesso!");
     }
 }

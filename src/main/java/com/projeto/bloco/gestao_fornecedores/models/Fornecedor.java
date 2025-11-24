@@ -1,7 +1,10 @@
 package com.projeto.bloco.gestao_fornecedores.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.projeto.bloco.gestao_fornecedores.models.enums.FornecedorStatus;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,10 +15,13 @@ import java.util.List;
 public class Fornecedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
-    private String nome;
+    private String nomeFantasia;
+
+    @Column(nullable = false)
+    private String razaoSocial;
 
     @Column(nullable = false)
     private String produtoFornecido;
@@ -27,11 +33,13 @@ public class Fornecedor {
     private String email;
 
     @Column(nullable = false)
+    private String cnpj;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", locale = "pt_BR")
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    @Column(nullable = false)
     private LocalDateTime dataCadastro;
 
     @Column(nullable = false)
-    private LocalDateTime dataFinalContrato;
-
-    @Column(nullable = false)
-    private String status;
+    private FornecedorStatus status;
 }
