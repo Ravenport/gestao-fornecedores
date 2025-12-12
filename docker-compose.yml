@@ -1,0 +1,5 @@
+services:
+  gestao-fornecedores-service:
+    build: .
+    ports:
+      - "8081:8081"

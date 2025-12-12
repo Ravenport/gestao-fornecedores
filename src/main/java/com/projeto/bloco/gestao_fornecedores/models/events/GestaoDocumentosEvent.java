@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GestaoDocumentoDataEvent {
+public class GestaoDocumentosEvent {
+    private String tipoEvento;
     private Long idDocumento;
     private Long idFornecedor;
     private String nomeDocumento;

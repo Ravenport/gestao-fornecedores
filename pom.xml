@@ -29,7 +29,7 @@
 	</scm>
 
 	<properties>
-		<java.version>24</java.version>
+		<java.version>21</java.version>
 		<spring.boot.maven.plugin.version>3.5.6</spring.boot.maven.plugin.version>
 		<spring.boot.dependencies.version>3.5.6</spring.boot.dependencies.version>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
@@ -92,6 +92,7 @@
 	</dependencies>
 
     <build>
+        <finalName>gestao-fornecedores</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

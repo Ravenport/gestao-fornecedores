@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class DadosMinimosFornecedor {
+public class DadosFornecedorDTO {
     private Long id;
     private String cnpj;
     private String razaoSocial;
